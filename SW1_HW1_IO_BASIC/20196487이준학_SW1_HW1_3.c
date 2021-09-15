@@ -11,28 +11,28 @@ int main() {
 	char name_A[NAME_SIZE] = { 0, };
 	char name_B[NAME_SIZE] = { 0, };
 
-	//ÇÐ»ýA
+	//ï¿½Ð»ï¿½A
 	if (!scanf("%d", &kor_sc_A)) exit(1);
 	if (!scanf("%d", &eng_sc_A)) exit(1);
 	if (!getchar()) exit(1);
 	if (!scanf("%s", name_A)) exit(1);
 
-	//ÇÐ»ýB
+	//ï¿½Ð»ï¿½B
 	if (!scanf("%d", &kor_sc_B)) exit(1);
 	if (!scanf("%d", &eng_sc_B)) exit(1);
 	if (!getchar()) exit(1);
 	if (!scanf("%s", name_B)) exit(1);
 
-	//ÇÐ»ý A Ãâ·Â
+	//ï¿½Ð»ï¿½ A ï¿½ï¿½ï¿½
 	int total_sc = kor_sc_A + eng_sc_A;
-	float average_sc = total_sc / 2;
+	float average_sc = (float)total_sc / 2;
 	printf("\nNAME ENGLISH KOREAN TOTAL AVERAGE\n");
 	printf("       SCORE  SCORE SCORE   SCORE\n");
 	printf("%-4s %-7d %-6d %-5d %-7.2f\n", name_A, eng_sc_A, kor_sc_A, total_sc, average_sc);
 
-	//ÇÐ»ý B Ãâ·Â
+	//ï¿½Ð»ï¿½ B ï¿½ï¿½ï¿½
 	total_sc = kor_sc_B + eng_sc_B;
-	average_sc = total_sc / 2;
+	average_sc = (float)total_sc / 2;
 	printf("\nNAME ENGLISH KOREAN TOTAL AVERAGE\n");
 	printf("       SCORE  SCORE SCORE   SCORE\n");
 	printf("%-4s %-7d %-6d %-5d %-7.2f", name_B, eng_sc_B, kor_sc_B, total_sc, average_sc);
