@@ -15,6 +15,10 @@ int main() {
 			result = num1 - num2;
 			break;
 		case '/':
+			if (num1 % num2 == 0) {
+				result = num1 / num2;
+				break;
+			}
 			result = (float)num1 / num2;
 			printf("%.2f", result);
 			exit(1);
