@@ -9,8 +9,8 @@ int main() {
 	float result = .0;
 
 	while (1) {
-		printf("========== %d번째 입력입니다. ==========\n", index++);
-		if (!scanf("%d/%d", &up, &down)) exit(1);
+		printf("========== %d번째 입력입니다. (종료는 n/0꼴로 입력) ==========\n", ++index);
+		if (scanf("%d/%d", &up, &down) == EOF || down == 0) break;
 
 		//합계산
 		result_up = result_up * down + up * result_down;

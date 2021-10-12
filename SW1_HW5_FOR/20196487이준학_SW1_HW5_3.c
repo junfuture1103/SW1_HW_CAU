@@ -11,23 +11,29 @@ int main() {
 		if (!scanf("%c", &tmp)) exit(1);
 
 		switch (tmp) {
-			case ' ':
-				count++;
-				avg_size += tmp_size;
-				tmp_size = 0;
+		case ' ': // "apple banna" -> count == 3
+			if (tmp_size == 0) {
 				break;
-			case '\t':
-				count++;
-				avg_size += tmp_size;
-				tmp_size = 0;
+			}
+			count++;
+			avg_size += tmp_size;
+			tmp_size = 0;
+			break;
+		case '\t':
+			if (tmp_size == 0) {
 				break;
-			case '\n':
-				count++;
-				avg_size += tmp_size;
-				end_flag = 0;
-				break;
-			default:
-				tmp_size++;
+			}
+			count++;
+			avg_size += tmp_size;
+			tmp_size = 0;
+			break;
+		case '\n':
+			count++;
+			avg_size += tmp_size;
+			end_flag = 0;
+			break;
+		default:
+			tmp_size++;
 		}
 	}
 
