@@ -5,8 +5,6 @@ int main() {
 	int tmp_up = 0, tmp_down = 0;
 	int result_up = 0, result_down = 1; // 0/1
 	int index = 0;
-	float tmp_result = .0;
-	float result = .0;
 
 	while (1) {
 		printf("========== %d번째 입력입니다. (종료는 n/0꼴로 입력) ==========\n", ++index);
