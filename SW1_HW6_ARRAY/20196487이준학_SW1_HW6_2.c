@@ -53,17 +53,18 @@ int main() {
 				printf("입력이 잘못되었습니다. (성적은 A,B,C,D,F로 입력)");
 				exit(1);
 			}
-		}		
+		}
 		score[i] /= 2;
 		printf("성적 : %.2f\n", score[i]);
 	}
 
 	int least;
 	float temp;
+	char name_tmp;
 
 	for (int i = 0; i < 2; i++) {
 		least = i;
-		for (int j = i+1; j < 3; j++) {
+		for (int j = i + 1; j < 3; j++) {
 			if (score[least] > score[j]) {
 				least = j;
 			}
@@ -71,12 +72,19 @@ int main() {
 		temp = score[i];
 		score[i] = score[least];
 		score[least] = temp;
+
+		name_tmp = name[i];
+		name[i] = name[least];
+		name[least] = name_tmp;
 	}
 
+	float total = .0;
+
 	for (int i = 0; i < 3; i++) {
-		printf("%d위 : ", i + 1);
-		printf("%.2f\n", score[i]);
+		printf("%d위 : %c %.2f\n", i + 1, name[i], score[i]);
+		total += score[i];
 	}
+	printf("%.2f", total / 3);
 
 	return 0;
 }
