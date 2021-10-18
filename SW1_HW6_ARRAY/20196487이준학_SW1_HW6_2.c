@@ -1,10 +1,9 @@
 #include <stdio.h>
-
+//공통 순위 고려
 int main() {
 	char tmp;
 	char name[3] = { 0, };
 	float score[3] = { 0, };
-	int rank[3] = { 0, };
 	char grade[5] = { 0, };
 
 	for (int i = 0; i < 3; i++) {
@@ -78,12 +77,16 @@ int main() {
 	}
 
 	float total = .0;
+	int rank = 1;
+	float tmp_score = .0;
 
-	for (int i = 0; i < 3; i++) {
-		printf("%d위 : %c %.2f\n", i + 1, name[i], score[i]);
+	for (int i = 2; i >= 0; i--) {
+		if (i != 2 && tmp_score != score[i]) rank++;
+
+		printf("%d위 : %c %.2f\n", rank, name[i], score[i]);
 		total += score[i];
+		tmp_score = score[i];
 	}
-	printf("%.2f", total / 3);
-
+	printf("\n 평균 : %.2f", total / 3);
 	return 0;
 }

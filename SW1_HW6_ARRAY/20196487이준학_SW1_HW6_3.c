@@ -7,7 +7,7 @@ int main() {
 	srand(time(NULL));
 	int group_num[4] = { 0, };
 	int tmp = 0;
-	
+
 	for (int i = 0; i < 50; i++) {
 		tmp = rand() % 100 + 1;
 		if (tmp < 50 && tmp % 2 == 1) {
@@ -43,7 +43,7 @@ int main() {
 	for (int i = 0; i < 3; i++) {
 		min = group_num[i];
 		min_index = i;
-		for (int j = i+1; j < 4; j++) {
+		for (int j = i + 1; j < 4; j++) {
 			if (min > group_num[j]) {
 				min = group_num[j];
 				min_index = j;

@@ -150,12 +150,13 @@ int main() {
 			result += result_score[k][i];
 		}
 
+		printf("\n");
 
 		if (k == 0) {
-			printf("국어 성적 평균은 %.2f점 입니다.", (float)result / STU_NUM);
+			printf("국어 성적 평균은 %.2f점 입니다.\n", (float)result / STU_NUM);
 		}
 		else {
-			printf("수학 성적 평균은 %.2f점 입니다.", (float)result / STU_NUM);
+			printf("수학 성적 평균은 %.2f점 입니다.\n", (float)result / STU_NUM);
 		}
 	}
 

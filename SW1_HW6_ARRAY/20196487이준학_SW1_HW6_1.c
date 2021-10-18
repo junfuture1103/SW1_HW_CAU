@@ -7,9 +7,9 @@ int main() {
 	int tmp = 0;
 	int matrix_A[3][4] = { 0, };
 	int matrix_B[3][4] = { 0, };
-	int matrix_C[3][4] = { 0, };
+	int matrix_C[3][4] = { 0, }; //for ADD result
 	int matrix_D[4][3] = { 0, };
-	int matrix_E[3][3] = { 0, };
+	int matrix_E[3][3] = { 0, }; // for Multiply result
 	
 	//create matrix A, B, D
 	for (int i = 0; i < 3; i++) {
@@ -58,7 +58,6 @@ int main() {
 	}
 
 	printf("\n\n");
-
 	printf("==== matrix D ====\n");
 	//print matrix D
 	for (int i = 0; i < 4; i++) {
