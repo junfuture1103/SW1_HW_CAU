@@ -62,7 +62,7 @@ int main() {
 			int max = tmp_index[0];
 			int max_index = 0;
 			for (int j = 0; j < TEST_NUM; j++) {
-				if (max <= tmp_index[j]) { // <=을 사용하여 등급갯수가 같을때 상위등급으로 결정 
+				if (max < tmp_index[j]) { // < 을 사용하여 등급갯수가 같을때 상위등급으로 결정 char ASCII값이 작으면 높은 점수
 					max = tmp_index[j];
 					max_index = j;
 				}
@@ -98,9 +98,10 @@ int main() {
 				exit(1);
 			}
 		}
+		printf("\n\n");
 	}
 
-	printf("result_score : ");
+	printf("======= 정렬 전 result_score : =======\n");
 	for (int k = 0; k < 2; k++) {
 		printf("\n성적 : ");
 		for (int i = 0; i < 5; i++) {
@@ -108,7 +109,55 @@ int main() {
 		}
 	}
 
+	//순위 결정을 위한 이름 순서 배열 정의 및 초기화
+	char name_rank[2][5] = { 0, };
+	for (int k = 0; k < 2; k++) {
+		for (int i = 0; i < 5; i++) {
+			name_rank[k][i] = name[i];
+		}
+	}
+
 	//정렬
+	for (int k = 0; k < 2; k++) {
+		for (int i = 0; i < 4; i++) {
+			int least = i;
+			for (int j = i + 1; j < 5; j++) {
+				if (result_score[k][least] > result_score[k][j]) {
+					least = j;
+				}
+			}
+			int temp = result_score[k][least];
+			result_score[k][least] = result_score[k][i];
+			result_score[k][i] = temp;
+
+			temp = name[least];
+			name_rank[k][least] = name_rank[k][i];
+			name_rank[k][i] = temp;
+		}
+	}
+
+	printf("\n\n======= 최종 RANK =======\n");
+	for (int k = 0; k < 2; k++) {
+		printf("\n성적 : ");
+		for (int i = 0; i < 5; i++) {
+			printf("%d위 %c:%d ", i + 1, name_rank[k][4 - i], result_score[k][4 - i]);
+		}
+	}
+
+	for (int k = 0; k < SUB_NUM; k++) {
+		int result = 0;
+		for (int i = 0; i < STU_NUM; i++) {
+			result += result_score[k][i];
+		}
+
+
+		if (k == 0) {
+			printf("국어 성적 평균은 %.2f점 입니다.", (float)result / STU_NUM);
+		}
+		else {
+			printf("수학 성적 평균은 %.2f점 입니다.", (float)result / STU_NUM);
+		}
+	}
 
 	return 0;
 }
