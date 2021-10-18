@@ -1,5 +1,4 @@
 #include <stdio.h>
-#define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(t))
 
 int main() {
 	char tmp;
