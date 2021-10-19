@@ -10,13 +10,13 @@ int main() {
 	int matrix_C[3][4] = { 0, }; //for ADD result
 	int matrix_D[4][3] = { 0, };
 	int matrix_E[3][3] = { 0, }; // for Multiply result
-	
+
 	//create matrix A, B, D
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 4; j++) {
-			matrix_A[i][j] = rand() % 10 + 1;
-			matrix_B[i][j] = rand() % 10 + 1;
-			matrix_D[j][i] = rand() % 10 + 1;
+			matrix_A[i][j] = rand() % 11;
+			matrix_B[i][j] = rand() % 11;
+			matrix_D[j][i] = rand() % 11;
 		}
 	}
 
@@ -71,7 +71,7 @@ int main() {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 4; k++) {
-				matrix_E[i][j] += matrix_D[k][i] * matrix_C[j][k];
+				matrix_E[j][i] += matrix_D[k][i] * matrix_C[j][k];
 			}
 		}
 	}

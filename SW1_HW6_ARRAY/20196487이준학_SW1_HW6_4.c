@@ -14,6 +14,7 @@ int main() {
 	char grade[TEST_NUM] = { 0, };
 	char result_grade[SUB_NUM][TEST_NUM] = { 0, };
 	int result_score[SUB_NUM][STU_NUM] = { 0, };
+	float avg_result[STU_NUM] = { 0, };
 
 	for (int i = 0; i < STU_NUM; i++) {
 		printf("학생의 이름을 입력해주세요(알파벳 한 글자) : ");
@@ -109,12 +110,17 @@ int main() {
 		}
 	}
 
-	//순위 결정을 위한 이름 순서 배열 정의 및 초기화
-	char name_rank[2][5] = { 0, };
-	for (int k = 0; k < 2; k++) {
+	//순위 결정(국어, 수학, 평균)을 위한 이름 순서 배열 정의 및 초기화
+	char name_rank[3][5] = { 0, };
+	for (int k = 0; k < 3; k++) {
 		for (int i = 0; i < 5; i++) {
 			name_rank[k][i] = name[i];
 		}
+	}
+
+	//평균 점수 석차를 위한 배열 정의 및 초기화
+	for (int i = 0; i < 5; i++) {
+		avg_result[i] = ((float)result_score[KOR][i] + result_score[MATH][i]) / 2;
 	}
 
 	//정렬
@@ -130,18 +136,44 @@ int main() {
 			result_score[k][least] = result_score[k][i];
 			result_score[k][i] = temp;
 
-			temp = name[least];
+			temp = name_rank[k][least];
 			name_rank[k][least] = name_rank[k][i];
 			name_rank[k][i] = temp;
 		}
 	}
 
+	for (int i = 0; i < 4; i++) {
+		int least = i;
+		for (int j = i + 1; j < 5; j++) {
+			if (avg_result[least] > avg_result[j]) {
+				least = j;
+			}
+		}
+		float temp = avg_result[least];
+		avg_result[least] = avg_result[i];
+		avg_result[i] = temp;
+
+		char tmp_name = name_rank[2][least];
+		name_rank[2][least] = name_rank[2][i];
+		name_rank[2][i] = tmp_name;
+	}
+
+
 	printf("\n\n======= 최종 RANK =======\n");
 	for (int k = 0; k < 2; k++) {
-		printf("\n성적 : ");
+		if (k == 0) {
+			printf("국어 성적 순위 : ");
+		}
+		else if (k == 1) {
+			printf("수학 성적 석차 : ");
+		}
 		for (int i = 0; i < 5; i++) {
 			printf("%d위 %c:%d ", i + 1, name_rank[k][4 - i], result_score[k][4 - i]);
 		}
+	}
+
+	for (int i = 0; i < 5; i++) {
+		printf("\n평균 성적 석차 : %d위 %c:%.2f ", i + 1, name_rank[2][4 - i], avg_result[4 - i]);
 	}
 
 	for (int k = 0; k < SUB_NUM; k++) {
@@ -155,9 +187,10 @@ int main() {
 		if (k == 0) {
 			printf("국어 성적 평균은 %.2f점 입니다.\n", (float)result / STU_NUM);
 		}
-		else {
+		else if (k == 1) {
 			printf("수학 성적 평균은 %.2f점 입니다.\n", (float)result / STU_NUM);
 		}
+
 	}
 
 	return 0;
