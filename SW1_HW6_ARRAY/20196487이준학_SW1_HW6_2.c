@@ -92,6 +92,7 @@ int main() {
 			printf("%d¿ß : %c %.2f\n", rank, name[i], score[i]);
 			total += score[i];
 			tmp_score = score[i];
+			real_rank = rank;
 		}
 		rank++;
 		real_rank++;
