@@ -8,10 +8,11 @@
 int main() {
 	char tmp;
 	char sign[5] = { 'A','B', 'C', 'D', 'F' };
+	
 	char name[STU_NUM] = { 0, };
 	int score[STU_NUM] = { 0, };
-	int rank[STU_NUM] = { 0, };
 	char grade[TEST_NUM] = { 0, };
+
 	char result_grade[SUB_NUM][TEST_NUM] = { 0, };
 	int result_score[SUB_NUM][STU_NUM] = { 0, };
 	float avg_result[STU_NUM] = { 0, };

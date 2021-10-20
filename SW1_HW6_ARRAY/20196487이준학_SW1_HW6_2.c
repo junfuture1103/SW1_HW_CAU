@@ -78,15 +78,24 @@ int main() {
 
 	float total = .0;
 	int rank = 1;
+	int real_rank = 1;
 	float tmp_score = .0;
 
 	for (int i = 2; i >= 0; i--) {
-		if (i != 2 && tmp_score != score[i]) rank++;
-
-		printf("%d¿ß : %c %.2f\n", rank, name[i], score[i]);
-		total += score[i];
-		tmp_score = score[i];
+		if (i != 2 && tmp_score == score[i]) {
+			real_rank -= 1;
+			printf("%d¿ß : %c %.2f\n", real_rank, name[i], score[i]);
+			total += score[i];
+			tmp_score = score[i];
+		}
+		else {
+			printf("%d¿ß : %c %.2f\n", rank, name[i], score[i]);
+			total += score[i];
+			tmp_score = score[i];
+		}
+		rank++;
+		real_rank++;
 	}
-	printf("\n ∆Ú±’ : %.2f", total / 3);
+	printf("\n∆Ú±’ : %.2f", total / 3);
 	return 0;
 }
