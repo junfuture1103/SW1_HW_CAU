@@ -8,7 +8,7 @@ void sort(int list[], int index) {
 	int min_index, temp;
 	char name_tmp;
 
-	for (int i = 0; i < index-1; i++) {
+	for (int i = 0; i < index - 1; i++) {
 		min_index = i;
 		for (int j = i + 1; j < index; j++) {
 			if (list[min_index] > list[j]) {
@@ -25,17 +25,35 @@ int main()
 {
 	int even[RAND_NUM] = { 0, };
 	int odd[RAND_NUM] = { 0, };
-	int even_index = 0; 
+	int tmp[RAND_NUM] = { 0, };
+	int even_index = 0;
 	int odd_index = 0;
 
 	srand(time(NULL));
 	for (int i = 0; i < RAND_NUM; i++)
 	{
 		int random = rand() % 100 + 1;
-		//printf("========== 积己等 磊楷荐 : %d ==========\n", random);
+		int flag = 0;
+
+		if (i != 0) {
+			flag = 0;
+			while (!flag) {
+				for (int j = 0; j < i; j++) {
+					if (tmp[j] == random) {
+						break;
+					}
+					if (j == i - 1) {
+						flag = 1;
+					}
+				}
+				random = rand() % 100 + 1;
+			}
+		}
+		printf("========== 积己等 磊楷荐 : %d ==========\n", random);
+		tmp[i] = random;
 
 		if (random % 2 == 0) {
-			even[even_index]=random;
+			even[even_index] = random;
 			even_index++;
 		}
 		else {
@@ -60,7 +78,7 @@ int main()
 	for (int i = 0; i < odd_index; i++) {
 		printf("%d ", odd[i]);
 	}
-	
+
 	int tmp_odd = 0;
 	int tmp_even = 0;
 	int result_list[RAND_NUM] = { 0, };
