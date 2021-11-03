@@ -7,9 +7,9 @@ void swap(int* m, int* n) {
 	return;
 }
 
-void add_sub(int* m, int* n) {
-	int add_result = *m + *n;
-	int sub_result = *m - *n;
+void add_sub(int m, int n) {
+	int add_result = m + n;
+	int sub_result = m - n;
 
 	printf("ADD_RESULT(m+n) : %d\n", add_result);
 	printf("ADD_RESULT(m-n) : %d\n", sub_result);

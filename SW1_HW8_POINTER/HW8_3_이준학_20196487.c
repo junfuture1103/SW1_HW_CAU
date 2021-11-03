@@ -19,9 +19,8 @@ void sort(int list[], int index) {
 	}
 }
 
-void recu_search(int find_num, int list[], int left, int right, int* count) {
-	if (*count >= NUM_MAX) {
-		printf("\n없음");
+void recu_search(int find_num, int list[], int left, int right, int* index, int* count) {
+	if (left >= right) {
 		return;
 	}
 
@@ -32,42 +31,39 @@ void recu_search(int find_num, int list[], int left, int right, int* count) {
 
 	if (list[mid] == find_num) {
 		//mid가 위치
-		printf("%d에 있음", mid);
+		*index = mid;
 	}
 	else if (list[mid] < find_num) {
-		recu_search(find_num, list, mid, right, count);
+		recu_search(find_num, list, mid + 1, right, index, count);
 	}
 	else if (list[mid] > find_num) {
-		recu_search(find_num, list, left, mid, count);
+		recu_search(find_num, list, left, mid - 1, index, count);
 	}
 	return;
 }
 
-void iter_search(int find_num, int list[], int size) {
+void iter_search(int find_num, int list[], int size, int* index, int* iter_count) {
 	int mid = size / 2;
-	int iter_count = 0;
 	int left = 0;
 	int right = size;
 
-	while (iter_count < size) {
+	while (left < right) {
 		mid = (left + right) / 2;
-		printf("[%d]번째 반복문 %d\n", iter_count + 1, mid);
+		printf("[%d]번째 반복문 %d\n", (*iter_count) + 1, mid);
+		(*iter_count)++;
 		//작은경우 왼쪽으로 
 		if (list[mid] == find_num) {
 			//mid가 위치
-			printf("%d에 있음", mid);
+			*index = mid;
 			return;
 		}
 		else if (list[mid] < find_num) {
-			left = mid;
+			left = mid + 1;
 		}
 		else if (list[mid] > find_num) {
-			right = mid;
+			right = mid - 1;
 		}
-		iter_count++;
 	}
-
-	printf("\n없음");
 	return;
 }
 
@@ -120,13 +116,28 @@ int main()
 
 	if (!scanf("%d", &find_num)) exit(1);
 
+	int index = -1;
+	int iter_count = 0;
 	printf("\n\n======= 반복 결과 =======\n");
-	iter_search(find_num, tmp, NUM_MAX);
+	iter_search(find_num, tmp, NUM_MAX, &index, &iter_count);
+	if (index == -1) {
+		printf("없음. 비교 횟수 : %d", iter_count);
+	}
+	else {
+		printf("%d에 있음. 비교 횟수 : %d", index, iter_count);
+	}
 
 	printf("\n\n======= 순환 결과 =======\n");
+	index = -1;
 	int recu_count = 0;
-	int left = 0;
-	recu_search(find_num, tmp, left, NUM_MAX, &recu_count);
+	recu_search(find_num, tmp, 0, NUM_MAX, &index, &recu_count);
+
+	if (index == -1) {
+		printf("없음. 비교 횟수 : %d", recu_count);
+	}
+	else {
+		printf("%d에 있음. 비교 횟수 : %d", index, recu_count);
+	}
 
 	return 0;
 }
