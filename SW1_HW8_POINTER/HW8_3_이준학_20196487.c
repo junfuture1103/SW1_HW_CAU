@@ -19,26 +19,26 @@ void sort(int list[], int index) {
 	}
 }
 
-void recu_search(int find_num, int list[], int right, int *count) {
+void recu_search(int find_num, int list[], int left, int right, int* count) {
 	if (*count >= NUM_MAX) {
 		printf("\n없음");
 		return;
 	}
 
-	int mid = right / 2;
-		
-	printf("[%d]번째 순환 %d\n", (*count)+1, mid);
+	int mid = (left + right) / 2;
+
+	printf("[%d]번째 순환 %d\n", (*count) + 1, mid);
 	(*count)++;
-	
+
 	if (list[mid] == find_num) {
 		//mid가 위치
 		printf("%d에 있음", mid);
 	}
 	else if (list[mid] < find_num) {
-		recu_search(find_num, list, NUM_MAX-1 + mid, count);
+		recu_search(find_num, list, mid, right, count);
 	}
 	else if (list[mid] > find_num) {
-		recu_search(find_num, list, mid, count);
+		recu_search(find_num, list, left, mid, count);
 	}
 	return;
 }
@@ -46,9 +46,12 @@ void recu_search(int find_num, int list[], int right, int *count) {
 void iter_search(int find_num, int list[], int size) {
 	int mid = size / 2;
 	int iter_count = 0;
+	int left = 0;
+	int right = size;
 
-	while (iter_count<size) {
-		printf("[%d]번째 반복문 %d\n", iter_count+1, mid);
+	while (iter_count < size) {
+		mid = (left + right) / 2;
+		printf("[%d]번째 반복문 %d\n", iter_count + 1, mid);
 		//작은경우 왼쪽으로 
 		if (list[mid] == find_num) {
 			//mid가 위치
@@ -56,10 +59,10 @@ void iter_search(int find_num, int list[], int size) {
 			return;
 		}
 		else if (list[mid] < find_num) {
-			mid = (size-1 + mid) / 2;
+			left = mid;
 		}
 		else if (list[mid] > find_num) {
-			mid /= 2;
+			right = mid;
 		}
 		iter_count++;
 	}
@@ -89,7 +92,7 @@ int main()
 						tmp[i] = random;
 						break;
 					}
-					if (j == i-1) {
+					if (j == i - 1) {
 						flag = 1;
 					}
 				}
@@ -122,7 +125,8 @@ int main()
 
 	printf("\n\n======= 순환 결과 =======\n");
 	int recu_count = 0;
-	recu_search(find_num, tmp, NUM_MAX, &recu_count);
+	int left = 0;
+	recu_search(find_num, tmp, left, NUM_MAX, &recu_count);
 
 	return 0;
 }
