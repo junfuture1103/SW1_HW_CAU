@@ -30,16 +30,23 @@ void sort(int list[], float list2[], char name[], int index) {
 	return;
 }
 
-
-void avg_cal(char name[], int score[STU_NUM][SUB_NUM], int result_score[], float avg_score[]) {
+void total_cal(char name[], int score[STU_NUM][SUB_NUM], int result_score[]) {
 	for (int i = 0; i < STU_NUM; i++) {
 		for (int j = 0; j < SUB_NUM; j++) {
 			result_score[i] += score[i][j];
 		}
-		avg_score[i] = (float)result_score[i] / SUB_NUM;
 	}
+	return;
+}
 
-	sort(result_score, avg_score, name, STU_NUM);
+void avg_cal(char name[], int score[STU_NUM][SUB_NUM], float avg_score[]) {
+	for (int i = 0; i < STU_NUM; i++) {
+		int tmp = 0;
+		for (int j = 0; j < SUB_NUM; j++) {
+			tmp += score[i][j];
+		}
+		avg_score[i] = (float)tmp / SUB_NUM;
+	}
 	return;
 }
 
@@ -58,7 +65,9 @@ int main() {
 		if (!getchar()) exit(1);
 	}
 
-	avg_cal(name, score, result_score, avg_score);
+	total_cal(name, score, result_score);
+	avg_cal(name, score, avg_score);
+	sort(result_score, avg_score, name, STU_NUM);
 
 	for (int i = 0; i < STU_NUM; i++) {
 		printf("%cÀÇ ÃÑÁ¡ : %d Æò±Õ : %.2f\n", name[i], result_score[i], avg_score[i]);

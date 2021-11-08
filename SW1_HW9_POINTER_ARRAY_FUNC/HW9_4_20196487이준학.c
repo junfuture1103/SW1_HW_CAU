@@ -6,12 +6,13 @@
 #define GROUP_NUM 10
 
 void tmp_sort(int list[], char name[], int left, int right) {
+	if (left >= right) return;
 	int min_index, temp;
 	char name_tmp;
 
 	for (int i = left; i < right; i++) {
 		min_index = i;
-		for (int j = i + 1; j < right+1; j++) {
+		for (int j = i + 1; j < right + 1; j++) {
 			if (name[min_index] > name[j]) {
 				min_index = j;
 			}
@@ -102,6 +103,7 @@ int main() {
 	int right = 0;
 
 	for (int i = 1; i < GROUP_NUM; i++) {
+		//printf("left : %d right : %d\n", left, right);
 		if (group_index[left] == group_index[i]) {
 			right++;
 		}
