@@ -15,15 +15,18 @@ void recu_fib(int n, int list[]) {
 	return;
 }
 
-/*
 void recu_nodu_fib(int n, int list[]) {
-	if (n < 3) {
-		return 1;
+	if (list[n - 1] == 0) {
+		if (n == 1 || n == 2) {
+			list[n - 1] = 1;
+			return;
+		}
+		recu_fib(n - 1, list);
+		recu_fib(n - 2, list);
 	}
-
-	return recu_fib(n - 2) + recu_fib(n - 1);
+	list[n - 1] = list[n - 2] + list[n - 3];
+	return;
 }
-*/
 
 void iter_fib(int n, int list[]) {
 	if (n < 3) {
