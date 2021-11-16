@@ -22,6 +22,12 @@ void recu_nodu_fib(int n, int list[]) {
 			return;
 		}
 		recu_fib(n - 1, list);
+	}
+	else if (list[n - 1] == 1) {
+		if (n == 1 || n == 2) {
+			list[n - 1] = 1;
+			return;
+		}
 		recu_fib(n - 2, list);
 	}
 	list[n - 1] = list[n - 2] + list[n - 3];
@@ -59,11 +65,19 @@ int main() {
 	}
 
 	recu_fib(n, list);
-	printf("\nREC : ");
+	printf("\nRECU : ");
 
 	for (int i = 0; i < n; i++) {
 		printf("%d ", list[i]);
+		list[i] = 0;
 	}
 
+	recu_nodu_fib(n, list);
+	printf("\nRECU(no_duplicate) : ");
+
+	for (int i = 0; i < n; i++) {
+		printf("%d ", list[i]);
+		list[i] = 0;
+	}
 	return 0;
 }
