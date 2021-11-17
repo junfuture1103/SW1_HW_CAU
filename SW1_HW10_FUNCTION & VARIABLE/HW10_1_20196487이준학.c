@@ -9,7 +9,7 @@ void avg_ascii(float* total_ascii, int* total_length, int tmp_size) {
 		*total_ascii += tmp_size;
 		(*total_length)++;
 		if (97 <= tmp_size && tmp_size <= 122) {
-			*total_ascii /= tmp_size;
+			*total_ascii /= *total_length;
 		}
 	}
 
