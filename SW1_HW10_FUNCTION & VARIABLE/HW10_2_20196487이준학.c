@@ -16,19 +16,15 @@ void recu_fib(int n, int list[]) {
 }
 
 void recu_nodu_fib(int n, int list[]) {
-	if (list[n - 1] == 0) {
-		if (n == 1 || n == 2) {
-			list[n - 1] = 1;
-			return;
-		}
-		recu_fib(n - 1, list);
+	if (n == 1 || n == 2) {
+		list[n - 1] = 1;
+		return;
 	}
-	else if (list[n - 1] == 1) {
-		if (n == 1 || n == 2) {
-			list[n - 1] = 1;
-			return;
-		}
-		recu_fib(n - 2, list);
+	if (list[n - 2] == 0) {
+		recu_nodu_fib(n - 1, list);
+	}
+	if (list[n - 3] == 0) {
+		recu_nodu_fib(n - 2, list);
 	}
 	list[n - 1] = list[n - 2] + list[n - 3];
 	return;

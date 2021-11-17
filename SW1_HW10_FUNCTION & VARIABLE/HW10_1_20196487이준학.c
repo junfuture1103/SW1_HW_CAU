@@ -5,10 +5,10 @@
 #define FALSE 0
 
 void avg_ascii(float* total_ascii, int* total_length, int tmp_size) {
-	if (65 <= tmp_size && tmp_size <= 122) { //대문자 인경우 A == 65 Z == 90
+	if ('A' <= tmp_size && tmp_size <= 'z') { //대문자 인경우 A == 65 Z == 90
 		*total_ascii += tmp_size;
 		(*total_length)++;
-		if (97 <= tmp_size && tmp_size <= 122) {
+		if ('a' <= tmp_size && tmp_size <= 'z') {
 			*total_ascii /= *total_length;
 		}
 	}
@@ -26,10 +26,10 @@ int main() {
 	while (end_flag && total_length < 20) {
 		if (!scanf("%c", &tmp)) exit(1);
 
-		if (65 <= tmp && tmp <= 122) { //대문자 인경우 A == 65 Z == 90
+		if ('A' <= tmp && tmp <= 'z') { //대문자&소문자 인경우 A == 65 Z == 90
 			word[total_length] = tmp;
 			avg_ascii(&total_ascii, &total_length, tmp);
-			if (97 <= tmp && tmp <= 122) { //소문자인 경우 a == 97 z == 122
+			if ('a' <= tmp && tmp <= 'z') { //소문자인 경우 a == 97 z == 122
 				end_flag = FALSE;
 			}
 		}
