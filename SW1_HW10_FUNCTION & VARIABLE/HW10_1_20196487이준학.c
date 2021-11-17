@@ -4,11 +4,11 @@
 #define TRUE 1
 #define FALSE 0
 
-void avg_ascii(int* total_ascii, float* total_length, int tmp_size) {
+void avg_ascii(float* total_ascii, int* total_length, int tmp_size) {
 	if (65 <= tmp_size && tmp_size <= 122) { //대문자 인경우 A == 65 Z == 90
 		*total_ascii += tmp_size;
 		(*total_length)++;
-		if (97 <= tmp && tmp <= 122) {
+		if (97 <= tmp_size && tmp_size <= 122) {
 			*total_ascii /= tmp_size;
 		}
 	}
@@ -29,7 +29,7 @@ int main() {
 		if (65 <= tmp && tmp <= 122) { //대문자 인경우 A == 65 Z == 90
 			word[total_length] = tmp;
 			avg_ascii(&total_ascii, &total_length, tmp);
-			if (97 <= tmp && tmp <= 122) {
+			if (97 <= tmp && tmp <= 122) { //소문자인 경우 a == 97 z == 122
 				end_flag = FALSE;
 			}
 		}
