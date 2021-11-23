@@ -21,8 +21,6 @@ void sort(char list[][NAME_SIZE], int index_list[], int index) {
 	}
 }
 
-
-
 int main()
 {
 	char name[STU_NUM][NAME_SIZE];
@@ -55,21 +53,21 @@ int main()
 			now--;
 			for (int j = i; j > i - 2; j--) {
 				char majortmp[NAME_SIZE] = { 0, };
-				memcpy(majortmp, major[index_list[j]], 2);
-				strcat(majortmp, stu_num[j]);
-				memcpy(stu_num[j], majortmp, strlen(majortmp));
+				memcpy(majortmp, major[index_list[j]], 2); //in
+				strcat(majortmp, stu_num[j]); //in0
+				memcpy(stu_num[j], majortmp, strlen(majortmp)); // stu_num 0 -> in0
 			}
 		}
 
-		sprintf(tmp, "%d", now+1);
+		sprintf(tmp, "%d", now + 1);
 		now++;
-		
+
 		if (now > 9) {
 			memcpy(stu_num[i], tmp, strlen(tmp));
 			printf("%s\n", stu_num[i]);
 			continue;
 		}
-		strcat(stu_num[i], tmp);
+		strcat(stu_num[i], tmp); // "01"
 	}
 
 	for (int i = 0; i < STU_NUM; i++) {

@@ -21,6 +21,22 @@ void sort(char list[][NAME_SIZE], int index_list[],  int index) {
 	}
 }
 
+void rank_sort(int list[], int index_list[], int index) {
+	int min_index, temp;
+
+	for (int i = 0; i < index - 1; i++) {
+		min_index = i;
+		for (int j = i + 1; j < index; j++) {
+			if (list[index_list[min_index]] > list[index_list[j]])) {
+				min_index = j;
+			}
+		}
+		temp = index_list[i];
+		index_list[i] = index_list[min_index];
+		index_list[min_index] = temp;
+	}
+}
+
 int recu_search(char find_name[], char list[][NAME_SIZE], int index_list[], int left, int right, int* count) {
 	static int index = -1;
 

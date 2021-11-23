@@ -21,8 +21,6 @@ void sort(char list[][NAME_SIZE], int index_list[], int index) {
 	}
 }
 
-
-
 int main()
 {
 	char tmp[NAME_SIZE];
