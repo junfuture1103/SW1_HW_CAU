@@ -5,13 +5,13 @@
 #define NAME_SIZE 10
 #define STU_NUM 10
 
-void sort(char list[][NAME_SIZE], int index_list[],  int index) {
+void sort(char list[][NAME_SIZE], int index_list[], int index) {
 	int min_index, temp;
 
 	for (int i = 0; i < index - 1; i++) {
 		min_index = i;
 		for (int j = i + 1; j < index; j++) {
-			if (strcmp(list[index_list[min_index]], list[index_list[j]])==1) {
+			if (strcmp(list[index_list[min_index]], list[index_list[j]]) == 1) {
 				min_index = j;
 			}
 		}
@@ -27,7 +27,7 @@ void rank_sort(int list[], int index_list[], int index) {
 	for (int i = 0; i < index - 1; i++) {
 		min_index = i;
 		for (int j = i + 1; j < index; j++) {
-			if (list[index_list[min_index]] > list[index_list[j]])) {
+			if (list[index_list[min_index]] < list[index_list[j]]) {
 				min_index = j;
 			}
 		}
@@ -49,7 +49,7 @@ int recu_search(char find_name[], char list[][NAME_SIZE], int index_list[], int 
 	printf("[%d]번째 순환 %d\n", (*count) + 1, mid);
 	(*count)++;
 
-	if (strcmp(list[index_list[mid]], find_name)==0) {
+	if (strcmp(list[index_list[mid]], find_name) == 0) {
 		//mid가 위치
 		index = mid;
 	}
@@ -67,13 +67,34 @@ int main()
 	char name_tmp[NAME_SIZE];
 	char name[STU_NUM][NAME_SIZE];
 	int score[STU_NUM];
-	int index_list[STU_NUM] = {0,1,2,3,4,5,6,7,8,9};
+	int rank[STU_NUM];
+	int index_list[STU_NUM] = { 0,1,2,3,4,5,6,7,8,9 };
 
 	for (int i = 0; i < STU_NUM; i++) {
 		printf("%d번째 학생 이름 : ", i + 1);
 		if (!scanf("%s", name[i])) exit(1);
 		printf("%d번째 학생 점수 : ", i + 1);
 		if (!scanf("%d", &score[i])) exit(1);
+	}
+
+	rank_sort(score, index_list, STU_NUM);
+	int rank_tmp = 1;
+	for (int i = 0; i < STU_NUM; i++) {
+		if (i != STU_NUM - 1 && score[index_list[i]] == score[index_list[i + 1]]) {
+			rank[index_list[i]] = rank[index_list[i + 1]] = rank_tmp;
+			i++;
+		}
+		else {
+			rank[index_list[i]] = i + 1;
+			rank_tmp++;
+		}
+	}
+
+	printf("\n\n======= 성적 결과 =======\n");
+
+	for (int i = 0; i < STU_NUM; i++) {
+		printf("%d번째 학생 이름 : %s\n", i + 1, name[index_list[i]]);
+		printf("%d번째 학생 점수 : %d\n", i + 1, score[index_list[i]]);
 	}
 
 	sort(name, index_list, STU_NUM);
@@ -83,6 +104,7 @@ int main()
 	for (int i = 0; i < STU_NUM; i++) {
 		printf("%d번째 학생 이름 : %s\n", i + 1, name[index_list[i]]);
 		printf("%d번째 학생 점수 : %d\n", i + 1, score[index_list[i]]);
+		printf("%d번째 학생 등수 : %d\n", i + 1, rank[index_list[i]]);
 	}
 
 	printf("\n\n찾을 이름 입력해주세요(위의 배열에 없어도 됨) : ");
@@ -99,7 +121,10 @@ int main()
 		printf("없음. 비교 횟수 : %d", count);
 	}
 	else {
-		printf("%d에 있음. 비교 횟수 : %d", index, count);
+		printf("%d번째에 있음. 비교 횟수 : %d\n", index + 1, count);
+		printf("학생 이름 : %s\n", name[index_list[index]]);
+		printf("학생 점수 : %d\n", score[index_list[index]]);
+		printf("학생 등수 : %d\n", rank[index_list[index]]);
 	}
 
 	return 0;
