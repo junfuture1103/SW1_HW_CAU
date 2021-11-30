@@ -102,7 +102,13 @@ int main()
 	int now = 0;
 	int diff_index = 0;
 
-	//diff_index에는 학과명이 달라지는 인덱스가 담김
+	//diff_index에는 학과명이 달라지는 인덱스가 담김 
+	//ex)
+	//IS IS IS CS CS CS ECE ECE  MA  MA
+	//0  1   2  3  4  5  6   7   8   9
+	//diff_name = { 3, 6, 8 } 0-3 // 3-6 // 6-8 left right
+	//따로 배열을 만들지 않고 정렬이 되어있다는 사실을 이용해서, 특정 학과의 인덱스 범위를 기억
+	//동일한 배열 안에서 특정 학과의 인덱스 범위를 이용하여 서로다른 이름의 갯수 파악
 	for (int i = 1; i < STU_NUM; i++) {
 		if (strcmp(major[index_list[now]], major[index_list[i]]) != 0) {
 			tmp_sort(name, index_list, now, i);
