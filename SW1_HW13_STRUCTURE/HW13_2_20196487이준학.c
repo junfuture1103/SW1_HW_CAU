@@ -4,7 +4,7 @@
 #define EXAM_NUM 3
 #define element student
 
-typedef struct _stu{
+typedef struct _stu {
 	char PF;
 	char name[NAME_SIZE];
 	int score[EXAM_NUM];
@@ -13,27 +13,22 @@ typedef struct _stu{
 }student;
 
 
-void read_data(student stu[]) {
-	for (int i = 0; i < STU_NUM; i++) {
-		printf("%d번째 학생 이름 : ", i + 1);
-		if (!scanf("%s", stu[i].name)) exit(1);
-		printf("시험 점수 3번 : ");
-		if (!scanf("%d %d %d", &stu[i].score[0], &stu[i].score[1], &stu[i].score[2])) exit(1);
-	}
-
+void read_data(student* stu) {
+	printf("학생 이름 : ");
+	if (!scanf("%s", stu->name)) exit(1);
+	printf("시험 점수 3번 : ");
+	if (!scanf("%d %d %d", &stu->score[0], &stu->score[1], &stu->score[2])) exit(1);
 	return;
 }
 
-void calculate(student stu[]) {
-	for (int i = 0; i < STU_NUM; i++) {
-		stu[i].total = stu[i].score[0] + stu[i].score[1] + stu[i].score[2];
-		stu[i].avg = (float)stu[i].total / EXAM_NUM;
-		if (stu[i].avg >= 60) {
-			stu[i].PF = 'T';
-		}
-		else {
-			stu[i].PF = 'F';
-		}
+void calculate(student* stu) {
+	stu->total = stu->score[0] + stu->score[1] + stu->score[2];
+	stu->avg = (float)stu->total / EXAM_NUM;
+	if (stu->avg >= 60) {
+		stu->PF = 'T';
+	}
+	else {
+		stu->PF = 'F';
 	}
 	return;
 }
@@ -60,8 +55,12 @@ int main()
 	student stu[STU_NUM];
 	student stu_pass[STU_NUM];
 
-	read_data(stu);
-	calculate(stu);
+	for (int i = 0; i < STU_NUM; i++) {
+		read_data(&stu[i]);
+	}
+	for (int i = 0; i < STU_NUM; i++) {
+		calculate(&stu[i]);
+	}
 
 	printf("\n\n======= 입력 결과 =======\n");
 	int pass_index = 0;

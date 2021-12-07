@@ -91,6 +91,8 @@ int find_many_mj(student stu[], char temp[][MJ_SIZE], int pass_index, int mj_cou
 	int temp_index = 0;
 	int duplicate = 0;
 
+	//IS CS TS ES
+	//1. 해당 배열에서 중복안되는 전공들 찾기 test_set
 	//make test_set
 	for (int i = 0; i < pass_index; i++) {
 		if (i == 0) {
@@ -116,6 +118,7 @@ int find_many_mj(student stu[], char temp[][MJ_SIZE], int pass_index, int mj_cou
 		}
 	}
 
+	//test_set을 이용해서 몇개인지 계산하기
 	//make count
 	for (int i = 0; i < temp_index; i++) {
 		for (int j = 0; j < pass_index; j++) {

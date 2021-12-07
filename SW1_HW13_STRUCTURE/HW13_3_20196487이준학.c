@@ -120,9 +120,7 @@ int main() {
 
 	printf("\n======== 전공명과 합격자수 출력 ========\n\n");
 	for (int i = 0; i < temp_index; i++) {
-		if (mj_count[i] > 1) {
 			printf("%s:%d ", temp[i], mj_count[i]);
-		}
 	}
 
 	return 0;
