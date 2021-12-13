@@ -39,7 +39,6 @@ int main() {
 	int test2[5] = { 2, 4, 6, 8, 10 };
 	int test_result[10] = { 0, };
 
-
 	int result_index = merge(test, test2, test_result, 5, 5);
 
 	for (int i = 0; i < result_index; i++) {

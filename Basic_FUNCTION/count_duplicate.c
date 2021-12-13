@@ -47,6 +47,7 @@ int main() {
 	for (int i = 0; i < dup_index; i++) {
 		printf("%d ", dup[i]);
 	}
+
 	printf("\n\nÇ×¸ñº° °¹¼ö\n");
 	for (int i = 0; i < dup_index; i++) {
 		printf("%d ", index_count[i]);
